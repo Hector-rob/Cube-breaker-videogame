@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CubitoAbajo
   - Rojo
+  - canvas
   layers:
   - Default
   - TransparentFX
