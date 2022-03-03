@@ -4619,3 +4619,11 @@ Received Import Request.
 Start importing Assets/Scripts/Pelota.cs using Guid(10380ba03c5004b81b3bb70fa4c4aa23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07cd92eded4ce9102fdfbc538a7bec73') in 0.059254 seconds 
   Import took 0.066385 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 32.224778 seconds.
+  path: Assets/Scripts/Barrita.cs
+  artifactKey: Guid(a94ef9d64fb8e4605aba40179b2298e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Barrita.cs using Guid(a94ef9d64fb8e4605aba40179b2298e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a05a32a69eca389a6ee7e33fca4fcb4') in 0.010754 seconds 
+  Import took 0.017687 seconds .
+
