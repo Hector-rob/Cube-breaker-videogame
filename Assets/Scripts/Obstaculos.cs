@@ -42,10 +42,10 @@ public class Obstaculos : MonoBehaviour
         }
       }
       else{
-        if(transform.position.x > -20.6 && transform.position.y <= 2.27 && flagArriba == false){
+        if(transform.position.x > -20.7 && transform.position.y <= 2.4 && flagArriba == false){
           transform.Translate(-5*Time.deltaTime*speed,0,0);
         }
-        else if (transform.position.x <= -20.6 && transform.position.y <= 2.27 && flagArriba == false){
+        else if (transform.position.x <= -20.7 && transform.position.y <= 2.4 && flagArriba == false){
           transform.Translate(0,-5*Time.deltaTime*speed,0);
           if(transform.position.y <= -11){
             flagArriba = true;
@@ -58,14 +58,13 @@ public class Obstaculos : MonoBehaviour
             }
         }
         else if (transform.position.x >= -11 && flag2Arriba == true ){
-          print("ntre");
           transform.Translate(0,5*Time.deltaTime*speed,0);
+          if(transform.position.y >= 2.27){
+            flag2Arriba = false;
+            flagArriba = false;
         }
-        else if (flagArriba == true && transform.position.y >= 2.27){
-          transform.Translate(0,5*Time.deltaTime*speed,0);
-        }
-
       }
+    }
 
 
 
