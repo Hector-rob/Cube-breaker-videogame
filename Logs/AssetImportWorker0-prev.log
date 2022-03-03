@@ -328,3 +328,4 @@ Received Import Request.
 Start importing Assets/Music/Audio Source.prefab using Guid(72fcab1cf7b3343f08d84f65377ae90c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca3a79cf00447b15daedf9ead9cbf234') in 0.006075 seconds 
   Import took 0.011295 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
