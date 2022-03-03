@@ -19,6 +19,9 @@ public class Pelota : MonoBehaviour
     public Text info;
     private string name;
     private GameObject cube;
+    private Vector3 posVerdeArriba;
+    private Vector3 posVerdeAbajo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,10 @@ public class Pelota : MonoBehaviour
         //hacer en awake o start
         rb = GetComponent<Rigidbody>();
         rb.AddForce(vector);
+        posVerdeArriba = GameObject.Find("Verde1").transform.position;
+        posVerdeAbajo = GameObject.Find("Verde2").transform.position;
+
+
     }
 
     // Update is called once per frame
@@ -81,7 +88,7 @@ public class Pelota : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider c){
-       if (c.transform.tag == "Rojo"){
+       if (c.transform.tag == "Rojo" && c.gameObject.layer != 3){
          name = c.transform.name;
          cube = GameObject.Find(name);
          cubepos = cube.transform.position;
@@ -90,7 +97,7 @@ public class Pelota : MonoBehaviour
            cubepos.x += Random.Range(3,10);
          }
          else if(cubepos.x > 20){
-           cubepos.x -= Random.Range(3,10);
+           cubepos.x -= Random.Range(5,10);
          }
          cubepos.y += Random.Range(-5,5);
          if(cubepos.y > 2.27){
@@ -101,12 +108,23 @@ public class Pelota : MonoBehaviour
          }
          Instantiate(cube,cubepos,cube.transform.rotation);
          AddOne();
+        Destroy(c.gameObject);
        }
-       if (c.gameObject.layer == 3){
+       if (c.gameObject.layer == 3 && c.transform.tag != "Rojo"){
+         name = c.transform.name;
+         cube = GameObject.Find(name);
+         if (name.Contains("Verde1")){
+           cubepos = posVerdeArriba;
+         }
+         else if (name.Contains("Verde2")){
+           cubepos = posVerdeAbajo;
+         }
+         Instantiate(cube,cubepos,cube.transform.rotation);
          AddThree();
+         Destroy(c.gameObject);
        }
        //destroy - destruir componente o game object
-       Destroy(c.gameObject);
+
 
 
 
