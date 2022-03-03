@@ -32,13 +32,12 @@ public class Pelota : MonoBehaviour
         posVerdeArriba = GameObject.Find("Verde1").transform.position;
         posVerdeAbajo = GameObject.Find("Verde2").transform.position;
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (transform.position.y > 6.5 || transform.position.y < -13.8){
+      if (transform.position.y > 8 || transform.position.y < -15){
         info.text = "Perdiste. Fin del Juego";
       }
 
