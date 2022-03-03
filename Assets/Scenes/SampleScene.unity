@@ -623,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7770017761643349444, guid: bf9f0a7f4e01a4221b8a1fcd111de83d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.7
+      value: -15.21
       objectReference: {fileID: 0}
     - target: {fileID: 7770017761643349444, guid: bf9f0a7f4e01a4221b8a1fcd111de83d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1136,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Verde2
       objectReference: {fileID: 0}
+    - target: {fileID: 8833681501754514349, guid: 5273a08c7dab540878c7b8d4ffc1e7f4, type: 3}
+      propertyPath: m_TagString
+      value: CubitoAbajo
+      objectReference: {fileID: 0}
     - target: {fileID: 8833681501754514353, guid: 5273a08c7dab540878c7b8d4ffc1e7f4, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1274,4 +1278,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949eecd2d61e44ad3bf00de78ed73474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
