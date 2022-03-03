@@ -19,9 +19,6 @@ public class Barrita : MonoBehaviour
       float horizontal = Input.GetAxis("Horizontal");
       float vertical = Input.GetAxis("Vertical");
       transform.Translate((vertical * Time.deltaTime)*velocidadY,(horizontal * Time.deltaTime)*velocidadX,0);
-
-
-
     }
 
     void OnCollisionEnter(Collision c){

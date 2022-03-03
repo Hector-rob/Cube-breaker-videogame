@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - CubitoAbajo
+  - Rojo
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Verde
   - Water
   - UI
   - 
