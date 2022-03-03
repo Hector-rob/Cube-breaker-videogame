@@ -73,5 +73,26 @@ public class Pelota : MonoBehaviour
 
     }
 
+    void OnTriggerEnter(Collider c){
+        //collider no tiene info de la física
+       print("Trigger Enter" + c.transform.name);
+
+       //destroy - destruir componente o game object
+       Destroy(c.gameObject);
+
+   }
+
+   void OnTriggerStay(Collider c){
+       print("Trigger Stay");
+
+
+
+   }
+
+   void OnTriggerExit(Collider c){
+       print("Trigger Exit");
+
+   }
+
 
 }
