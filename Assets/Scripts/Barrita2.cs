@@ -8,7 +8,6 @@ public class Barrita2 : MonoBehaviour
 {
     public float velocidadX = 50;
     public float velocidadY = 5;
-    // Start is called before the first frame update
     void Start()
     {
 

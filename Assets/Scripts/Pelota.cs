@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Pelota : MonoBehaviour
 {
-    //obtenerlo internamente
     [SerializeField]
     private Rigidbody rb;
     public Vector3 vector = new Vector3(0,600,0);
@@ -22,25 +21,17 @@ public class Pelota : MonoBehaviour
     private Vector3 posVerdeArriba;
     private Vector3 posVerdeAbajo;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //obtener referencia a objeto en el mismo game object
-        //hacer en awake o start
+    void Start(){
         rb = GetComponent<Rigidbody>();
         rb.AddForce(vector);
         posVerdeArriba = GameObject.Find("Verde1").transform.position;
         posVerdeAbajo = GameObject.Find("Verde2").transform.position;
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update(){
       if (transform.position.y > 8 || transform.position.y < -15){
         info.text = "Perdiste. Fin del Juego";
       }
-
     }
 
     void OnCollisionEnter(Collision c){
@@ -75,16 +66,6 @@ public class Pelota : MonoBehaviour
         }
     }
   }
-
-    void OnCollisionStay(Collision c){
-  }
-
-      //print(c.transform.name); el objeto con el que choca
-
-    void OnCollisionExit(Collision c){
-
-
-    }
 
     void OnTriggerEnter(Collider c){
        if (c.transform.tag == "Rojo" && c.gameObject.layer != 3){
@@ -122,22 +103,6 @@ public class Pelota : MonoBehaviour
          AddThree();
          Destroy(c.gameObject);
        }
-       //destroy - destruir componente o game object
-
-
-
-
-   }
-
-   void OnTriggerStay(Collider c){
-
-
-
-   }
-
-   void OnTriggerExit(Collider c){
-
-
    }
 
    void AddOne(){
@@ -161,6 +126,5 @@ public class Pelota : MonoBehaviour
    void delText(){
    info.text = "";
    }
-
 
 }

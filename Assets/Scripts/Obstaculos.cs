@@ -11,13 +11,11 @@ public class Obstaculos : MonoBehaviour
     private bool flagArriba = false;
     private bool flag2Arriba = false;
     private int recorrido = 0;
-    // Start is called before the first frame update
+
     void Start(){
 
-
     }
-
-    // Update is called once per frame
+    
     void Update(){
       if(gameObject.tag == "CubitoAbajo"){
         if(transform.position.y <= -11 && transform.position.x <= 17){
@@ -65,10 +63,5 @@ public class Obstaculos : MonoBehaviour
         }
       }
     }
-
-
-
-
-    }
-
+  }
 }
