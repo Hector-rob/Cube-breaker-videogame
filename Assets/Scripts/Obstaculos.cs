@@ -1,3 +1,11 @@
+/*
+Actividad 1 - propuesta y primer prototipo
+Héctor Robles Villarreal A01634105
+Diego Su Gómez  A01620476
+Equipo 8
+Viernes 4 de marzo de 2020
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +23,7 @@ public class Obstaculos : MonoBehaviour
     void Start(){
 
     }
-    
+
     void Update(){
       if(gameObject.tag == "CubitoAbajo"){
         if(transform.position.y <= -11 && transform.position.x <= 17){
