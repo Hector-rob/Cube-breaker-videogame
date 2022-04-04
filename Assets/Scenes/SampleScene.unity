@@ -595,17 +595,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  cubitoAzul: {fileID: 7770017763011846292}
+  cubitoRojo: {fileID: 7770017761643349464, guid: bf9f0a7f4e01a4221b8a1fcd111de83d, type: 3}
+  cubitoVerdeArriba: {fileID: 3864629198135826217, guid: daf68ed05f743427abeba98fd507cb12, type: 3}
+  cubitoVerdeAbajo: {fileID: 8833681501754514349, guid: 5273a08c7dab540878c7b8d4ffc1e7f4, type: 3}
+  barritaArriba: {fileID: 99014286}
+  barritaAbajo: {fileID: 1629110264}
   vector: {x: 0, y: 300, z: 0}
-  cubepos: {x: 0, y: 0, z: 0}
   velocidadX: 50
   velocidadY: 50
   puntos: {fileID: 999252704}
   info: {fileID: 1399409116}
   infoT: {fileID: 2037277968}
-  barritaArriba: {fileID: 99014286}
-  barritaAbajo: {fileID: 1629110264}
-  cubitoAzul: {fileID: 7770017763011846292}
-  cubitoRojo: {fileID: 7770017761643349464, guid: bf9f0a7f4e01a4221b8a1fcd111de83d, type: 3}
 --- !u!54 &420960398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1647,24 +1648,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b05532dc77e14ef4822a82ac441632c, type: 3}
---- !u!1 &6860954308865025464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3864629198135826217, guid: daf68ed05f743427abeba98fd507cb12, type: 3}
-  m_PrefabInstance: {fileID: 7680583845982827153}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6860954308865025465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6860954308865025464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949eecd2d61e44ad3bf00de78ed73474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
 --- !u!1001 &7680583845982827153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1682,7 +1665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864629198135826217, guid: daf68ed05f743427abeba98fd507cb12, type: 3}
       propertyPath: m_TagString
-      value: Verde
+      value: CubitoArriba
       objectReference: {fileID: 0}
     - target: {fileID: 3864629198135826229, guid: daf68ed05f743427abeba98fd507cb12, type: 3}
       propertyPath: m_RootOrder
@@ -1730,24 +1713,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf68ed05f743427abeba98fd507cb12, type: 3}
---- !u!1 &7741010940141159099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833681501754514349, guid: 5273a08c7dab540878c7b8d4ffc1e7f4, type: 3}
-  m_PrefabInstance: {fileID: 1295368640572594454}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7741010940141159100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7741010940141159099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949eecd2d61e44ad3bf00de78ed73474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
 --- !u!1 &7770017763011846292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2403608165929311837, guid: 9dad2509d6dba4241b6ba1384a1134e3, type: 3}

@@ -18,7 +18,7 @@ public class Obstaculos : MonoBehaviour
     private bool flag2Abajo = false;
     private bool flagArriba = false;
     private bool flag2Arriba = false;
-    
+
     void Start(){
 
     }
