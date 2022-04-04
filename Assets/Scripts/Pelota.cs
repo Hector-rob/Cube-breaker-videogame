@@ -24,16 +24,35 @@ public class Pelota : MonoBehaviour
     private int puntuacion;
     public Text puntos;
     public Text info;
+    public Text infoT;
     private string name;
     private GameObject cube;
+    [SerializeField]
+    private GameObject barritaArriba;
+    [SerializeField]
+    private GameObject barritaAbajo;
     private Vector3 posVerdeArriba;
     private Vector3 posVerdeAbajo;
+    private Vector3 posAzul;
+    private Vector3 dobleXbarritas;
+    private Vector3 normalBarritas;
+    private Vector3 posRojo;
+    [SerializeField]
+    private GameObject cubitoAzul;
+    [SerializeField]
+    private GameObject cubitoRojo;
+    private bool flagSize;
+
 
     void Start(){
         rb = GetComponent<Rigidbody>();
         rb.AddForce(vector);
         posVerdeArriba = GameObject.Find("Verde1").transform.position;
         posVerdeAbajo = GameObject.Find("Verde2").transform.position;
+        posAzul = new Vector3(Random.Range(-10,10),Random.Range(-5,5),0);
+        dobleXbarritas = new Vector3(1,5,1);
+        normalBarritas = new Vector3(1,3.5f,1);
+        Instantiate(cubitoAzul,posAzul,transform.rotation);
     }
 
     void Update(){
@@ -76,40 +95,34 @@ public class Pelota : MonoBehaviour
   }
 
     void OnTriggerEnter(Collider c){
-       if (c.transform.tag == "Rojo" && c.gameObject.layer != 3){
+       if (c.transform.tag == "Rojo"){
          name = c.transform.name;
-         cube = GameObject.Find(name);
-         cubepos = cube.transform.position;
-         cubepos.x += Random.Range(-10,10);
-         if (cubepos.x < -23){
-           cubepos.x += Random.Range(3,10);
-         }
-         else if(cubepos.x > 20){
-           cubepos.x -= Random.Range(5,10);
-         }
-         cubepos.y += Random.Range(-5,5);
-         if(cubepos.y > 2.27){
-           cubepos.y -= Random.Range(2,7);
-         }
-         else if(cubepos.y < -11){
-           cubepos.y += Random.Range(2,7);
-         }
-         Instantiate(cube,cubepos,cube.transform.rotation);
-         AddOne();
-        Destroy(c.gameObject);
-       }
-       if (c.gameObject.layer == 3 && c.transform.tag != "Rojo"){
-         name = c.transform.name;
-         cube = GameObject.Find(name);
-         if (name.Contains("Verde1")){
-           cubepos = posVerdeArriba;
-         }
-         else if (name.Contains("Verde2")){
-           cubepos = posVerdeAbajo;
-         }
-         Instantiate(cube,cubepos,cube.transform.rotation);
-         AddThree();
          Destroy(c.gameObject);
+         StartCoroutine(cuboRojo(name));
+         StopCoroutine(cuboRojo(name));
+         AddOne();
+       }
+       if (c.gameObject.layer == 3){
+         cube = GameObject.Find(c.transform.name);
+         cube.transform.localScale = new Vector3(0, 0, 0);
+         StartCoroutine(cuboVerde(cube));
+         StopCoroutine(cuboVerde(cube));
+         AddThree();
+       }
+
+       if (c.transform.tag == "Azul"){
+         cube = GameObject.Find(c.transform.name);
+         cube.transform.localScale = new Vector3(0, 0, 0);
+         StartCoroutine(cuboAzul(cube));
+         StopCoroutine(cuboAzul(cube));
+         barritaAbajo.transform.localScale = dobleXbarritas;
+         barritaArriba.transform.localScale = dobleXbarritas;
+         flagSize = false;
+         if(!flagSize){
+           StartCoroutine(ReturnToNormal());
+           StopCoroutine(ReturnToNormal());
+         }
+         //Destroy(c.gameObject);
        }
    }
 
@@ -134,5 +147,52 @@ public class Pelota : MonoBehaviour
    void delText(){
    info.text = "";
    }
+
+   private IEnumerator ReturnToNormal(){
+     infoT.text = "Bonus de tamaño: 5segs";
+     yield return new WaitForSeconds(1);
+     infoT.text = "Bonus de tamaño: 4segs";
+     yield return new WaitForSeconds(1);
+     infoT.text = "Bonus de tamaño: 3segs";
+     yield return new WaitForSeconds(1);
+     infoT.text = "Bonus de tamaño: 2segs";
+     yield return new WaitForSeconds(1);
+     infoT.text = "Bonus de tamaño: 1seg";
+     yield return new WaitForSeconds(1);
+     infoT.text = " ";
+     barritaAbajo.transform.localScale = normalBarritas;
+     barritaArriba.transform.localScale = normalBarritas;
+     flagSize = true;
+   }
+
+   private IEnumerator cuboVerde(GameObject cube1){
+     yield return new WaitForSeconds(3);
+     cube1.transform.localScale = new Vector3(2, 2, 2);
+     if(cube1.name.Contains("Verde2")){
+       Instantiate(cube1,posVerdeAbajo,cube1.transform.rotation);
+     }
+     else{
+       Instantiate(cube1,posVerdeArriba,cube1.transform.rotation);
+     }
+     Destroy(cube1);
+   }
+
+   private IEnumerator cuboRojo(string name){
+     yield return new WaitForSeconds(3);
+     cubepos = cubitoRojo.transform.position;
+     posRojo = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
+     Instantiate(cubitoRojo,posRojo,cubitoRojo.transform.rotation);
+   }
+
+   private IEnumerator cuboAzul(GameObject cube3){
+     yield return new WaitForSeconds(15);
+     cube3.transform.localScale = new Vector3(2, 2, 2);
+     posAzul = new Vector3(Random.Range(-10,10),Random.Range(-5,5),0);
+     Instantiate(cube3,posAzul,cube3.transform.rotation);
+     Destroy(cube3);
+
+   }
+
+
 
 }
