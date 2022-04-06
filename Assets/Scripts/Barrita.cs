@@ -1,9 +1,9 @@
 /*
-Actividad 1 - propuesta y primer prototipo
+Actividad 2 - Actividad 2 - segundo prototipo de juego
 Héctor Robles Villarreal A01634105
 Diego Su Gómez  A01620476
 Equipo 8
-Viernes 4 de marzo de 2020
+Miércoles 6 de abril de 2022
 */
 
 using System.Collections;

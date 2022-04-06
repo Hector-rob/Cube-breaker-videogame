@@ -1,9 +1,9 @@
 /*
-Actividad 1 - propuesta y primer prototipo
+Actividad 2 - Actividad 2 - segundo prototipo de juego
 Héctor Robles Villarreal A01634105
 Diego Su Gómez  A01620476
 Equipo 8
-Viernes 4 de marzo de 2020
+Miércoles 6 de abril de 2022
 */
 
 using System.Collections;
@@ -15,7 +15,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Pelota : MonoBehaviour
 {
-    [SerializeField]
     private Rigidbody rb;
     [SerializeField]
     private GameObject cubitoAzul;
@@ -26,40 +25,63 @@ public class Pelota : MonoBehaviour
     [SerializeField]
     private GameObject cubitoVerdeAbajo;
     [SerializeField]
+    private GameObject cubitoMorado;
+    [SerializeField]
+    private GameObject cubitoTurquesa;
+    [SerializeField]
     private GameObject barritaArriba;
     [SerializeField]
     private GameObject barritaAbajo;
+    [SerializeField]
+    private GameObject pelota;
+    [SerializeField]
+    public Text puntos;
+    [SerializeField]
+    private Text info;
+    [SerializeField]
+    private Text infoT;
+    [SerializeField]
+    private Text infoBonus;
     public Vector3 vector = new Vector3(0,600,0);
     public float velocidadX = 500;
     public float velocidadY = 500;
-    private int puntuacion;
-    public Text puntos;
-    public Text info;
-    public Text infoT;
+    public static int puntuacion;
     private Vector3 posVerdeArriba;
     private Vector3 posVerdeAbajo;
-    private Vector3 posAzul;
-    private Vector3 posRojo;
+    private Vector3 pos;
+    private Vector3 posMorado;
     private Vector3 dobleXbarritas;
     private Vector3 normalBarritas;
+    private Vector3 doblePelota;
+    private Vector3 normalPelota;
     private bool flagSize;
-
+    public static int contPelotas = 1;
+    public int bonusSegs = 0;
+    public bool cubosAzules = false;
+    public bool cubosMorados = false;
+    public bool perdio = false;
+    public GameObject cubito;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
         rb.AddForce(vector);
-        posVerdeArriba = GameObject.Find("Verde1").transform.position;
-        posVerdeAbajo = GameObject.Find("Verde2").transform.position;
-        posAzul = new Vector3(Random.Range(-10,10),Random.Range(-5,5),0);
+        posVerdeArriba = new Vector3(-3.57f, 2.27f,0);
+        posVerdeAbajo = new Vector3(5.13f,-11.31f,0);
+        pos = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
         dobleXbarritas = new Vector3(1,5,1);
+        doblePelota= new Vector3(3,3,3);
+        normalPelota= new Vector3(1.5f,1.5f,1.5f);
         normalBarritas = new Vector3(1,3.5f,1);
-        Instantiate(cubitoAzul,posAzul,transform.rotation);
+        StartCoroutine(cuboAzul());
+        StopCoroutine(cuboAzul());
+        StartCoroutine(cuboMorado());
+        StopCoroutine(cuboMorado());
+        StartCoroutine(cuboTurquesa());
+        StopCoroutine(cuboTurquesa());
     }
 
     void Update(){
-      if (transform.position.y > 8 || transform.position.y < -15){
-        info.text = "Perdiste. Fin del Juego";
-      }
+
     }
 
     void OnCollisionEnter(Collision c){
@@ -96,7 +118,17 @@ public class Pelota : MonoBehaviour
   }
 
     void OnTriggerEnter(Collider c){
+      if(c.transform.tag == "Borde"){
+        contPelotas = contPelotas-1;
+        Destroy(gameObject);
+        print(contPelotas.ToString());
+        if(contPelotas <=0){
+            info.text = "Perdiste. Fin del Juego";
+        }
+      }
+
        if (c.transform.tag == "Rojo"){
+         transform.localScale = normalPelota;
          Destroy(c.gameObject);
          StartCoroutine(cuboRojo());
          StopCoroutine(cuboRojo());
@@ -117,23 +149,43 @@ public class Pelota : MonoBehaviour
        }
 
        if (c.transform.tag == "Azul"){
-         Destroy(c.gameObject);
-         StartCoroutine(cuboAzul());
-         StopCoroutine(cuboAzul());
-         barritaAbajo.transform.localScale = dobleXbarritas;
-         barritaArriba.transform.localScale = dobleXbarritas;
-         flagSize = false;
-         if(!flagSize){
+          Destroy(c.gameObject);
+          cubosAzules = false;
+          infoBonus.text = "Bonus de tamaño de barra!";
+          StartCoroutine(cuboAzul());
+          StopCoroutine(cuboAzul());
+          barritaAbajo.transform.localScale = dobleXbarritas;
+          barritaArriba.transform.localScale = dobleXbarritas;
+          flagSize = false;
+          if(!flagSize){
            StartCoroutine(ReturnToNormal());
            StopCoroutine(ReturnToNormal());
          }
+
+       }
+
+       if (c.transform.tag == "Morado"){
+         Destroy(c.gameObject);
+         cubosMorados = false;
+         contPelotas+=1;
+         infoBonus.text = "Pelota extra!";
+         StartCoroutine(cuboMorado());
+         StartCoroutine(nuevaPelota());
+         StopCoroutine(nuevaPelota());
+         StopCoroutine(cuboMorado());
+       }
+
+       if(c.transform.tag == "Turquesa"){
+         Destroy(c.gameObject);
+         transform.localScale = doblePelota;
+         infoBonus.text = "Bonus de tamaño de pelota!";
+         StartCoroutine(cuboTurquesa());
+         StopCoroutine(cuboTurquesa());
        }
    }
 
    void AddOne(){
      puntuacion+=1;
-     print("+1");
-     print(puntuacion);
      puntos.text = "Puntuación: " + puntuacion.ToString();
      info.text = "Destruiste un cubo rojo: + 1 punto!";
      Invoke("delText",2);
@@ -141,8 +193,6 @@ public class Pelota : MonoBehaviour
 
    void AddThree(){
      puntuacion+=3;
-     print("+3");
-     print(puntuacion);
      puntos.text = "Puntuación: " + puntuacion.ToString();
      info.text = "Destruiste un cubo verde: + 3 puntos!";
      Invoke("delText",2);
@@ -153,16 +203,11 @@ public class Pelota : MonoBehaviour
    }
 
    private IEnumerator ReturnToNormal(){
-     infoT.text = "Bonus de tamaño: 5segs";
-     yield return new WaitForSeconds(1);
-     infoT.text = "Bonus de tamaño: 4segs";
-     yield return new WaitForSeconds(1);
-     infoT.text = "Bonus de tamaño: 3segs";
-     yield return new WaitForSeconds(1);
-     infoT.text = "Bonus de tamaño: 2segs";
-     yield return new WaitForSeconds(1);
-     infoT.text = "Bonus de tamaño: 1seg";
-     yield return new WaitForSeconds(1);
+     while(bonusSegs > 0){
+       infoT.text = ("Bonus de tamaño: " + bonusSegs.ToString());
+       bonusSegs = bonusSegs - 1;
+       yield return new WaitForSeconds(1);
+     }
      infoT.text = " ";
      barritaAbajo.transform.localScale = normalBarritas;
      barritaArriba.transform.localScale = normalBarritas;
@@ -170,28 +215,61 @@ public class Pelota : MonoBehaviour
    }
 
    private IEnumerator cuboVerdeArriba(){
-     yield return new WaitForSeconds(3);
+     yield return new WaitForSeconds(2);
      Instantiate(cubitoVerdeArriba,posVerdeArriba,cubitoVerdeArriba.transform.rotation);
    }
 
    private IEnumerator cuboVerdeAbajo(){
-     yield return new WaitForSeconds(3);
+     yield return new WaitForSeconds(2);
      Instantiate(cubitoVerdeAbajo,posVerdeAbajo,cubitoVerdeAbajo.transform.rotation);
    }
 
    private IEnumerator cuboRojo(){
-     yield return new WaitForSeconds(3);
-     posRojo = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
-     Instantiate(cubitoRojo,posRojo,cubitoRojo.transform.rotation);
+     yield return new WaitForSeconds(2);
+     pos = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
+     Instantiate(cubitoRojo,pos,cubitoRojo.transform.rotation);
    }
 
    private IEnumerator cuboAzul(){
-     yield return new WaitForSeconds(15);
-     posAzul = new Vector3(Random.Range(-10,10),Random.Range(-5,5),0);
-     Instantiate(cubitoAzul,posAzul,cubitoAzul.transform.rotation);
+     yield return new WaitForSeconds(3);
+     infoBonus.text =" ";
+     yield return new WaitForSeconds(Random.Range(3,11));
+     pos = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
+     if(!cubosAzules){
+     Instantiate(cubitoAzul,pos,cubitoAzul.transform.rotation);
+     cubosAzules = true;
+     bonusSegs = 5;
+   }
+ }
 
+   private IEnumerator cuboMorado(){
+     yield return new WaitForSeconds(3);
+     infoBonus.text =" ";
+     yield return new WaitForSeconds(4);
+     //yield return new WaitForSeconds(Random.Range(15,20));
+     posMorado = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
+     if(!cubosMorados){
+      cubito = Instantiate(cubitoMorado,posMorado,cubitoMorado.transform.rotation);
+       cubosMorados = true;
+     }
    }
 
+   private IEnumerator nuevaPelota(){
+     Instantiate(pelota,posMorado, pelota.transform.rotation,transform.parent);
+     //contPelotas+=1;
+     yield return new WaitForSeconds(1);
+   }
 
+   private IEnumerator cuboTurquesa(){
+     yield return new WaitForSeconds(3);
+     infoBonus.text =" ";
+     yield return new WaitForSeconds(7);
+     pos = new Vector3(Random.Range(-23,20),Random.Range(-11,2.27f),0);
+     cubito = Instantiate(cubitoTurquesa,pos,cubitoTurquesa.transform.rotation);
+   }
 
+   private IEnumerator returnPelota(){
+     yield return new WaitForSeconds(3);
+     transform.localScale = normalPelota;
+   }
 }

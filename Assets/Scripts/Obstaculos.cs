@@ -1,9 +1,9 @@
 /*
-Actividad 1 - propuesta y primer prototipo
+Actividad 2 - Actividad 2 - segundo prototipo de juego
 Héctor Robles Villarreal A01634105
 Diego Su Gómez  A01620476
 Equipo 8
-Viernes 4 de marzo de 2020
+Miércoles 6 de abril de 2022
 */
 
 using System.Collections;
@@ -47,10 +47,10 @@ public class Obstaculos : MonoBehaviour
         }
       }
       else{
-        if(transform.position.x > -20.7 && transform.position.y <= 2.4 && flagArriba == false){
+        if(transform.position.x > -20.7 && transform.position.y <= 2.5 && flagArriba == false){
           transform.Translate(-5*Time.deltaTime*speed,0,0);
         }
-        else if (transform.position.x <= -20.7 && transform.position.y <= 2.4 && flagArriba == false){
+        else if (transform.position.x <= -20.7 && transform.position.y <= 2.5 && flagArriba == false){
           transform.Translate(0,-5*Time.deltaTime*speed,0);
           if(transform.position.y <= -11){
             flagArriba = true;
