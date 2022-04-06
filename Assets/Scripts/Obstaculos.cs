@@ -1,5 +1,5 @@
 /*
-Actividad 2 - Actividad 2 - segundo prototipo de juego
+Actividad 2 - segundo prototipo de juego
 Héctor Robles Villarreal A01634105
 Diego Su Gómez  A01620476
 Equipo 8
