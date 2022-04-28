@@ -10,6 +10,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 //informar que es INDISPENSABLE este componente
 [RequireComponent(typeof(Rigidbody))]
@@ -61,6 +63,10 @@ public class Pelota : MonoBehaviour
     public bool cubosMorados = false;
     public bool perdio = false;
     public GameObject cubito;
+    public Color color1 = Color.red;
+    public Color color2 = Color.blue;
+    public static int maxPunt;
+
 
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -78,9 +84,11 @@ public class Pelota : MonoBehaviour
         StopCoroutine(cuboMorado());
         StartCoroutine(cuboTurquesa());
         StopCoroutine(cuboTurquesa());
+
     }
 
     void Update(){
+
 
     }
 
@@ -123,6 +131,11 @@ public class Pelota : MonoBehaviour
         Destroy(gameObject);
         print(contPelotas.ToString());
         if(contPelotas <=0){
+          perdio = true;
+          if(puntuacion > maxPunt){
+            maxPunt = puntuacion;
+          }
+          perder();
             info.text = "Perdiste. Fin del Juego";
         }
       }
@@ -151,7 +164,7 @@ public class Pelota : MonoBehaviour
        if (c.transform.tag == "Azul"){
           Destroy(c.gameObject);
           cubosAzules = false;
-          infoBonus.text = "Bonus de tamaño de barra!";
+          infoBonus.text = "Barra grande!";
           StartCoroutine(cuboAzul());
           StopCoroutine(cuboAzul());
           barritaAbajo.transform.localScale = dobleXbarritas;
@@ -178,7 +191,7 @@ public class Pelota : MonoBehaviour
        if(c.transform.tag == "Turquesa"){
          Destroy(c.gameObject);
          transform.localScale = doblePelota;
-         infoBonus.text = "Bonus de tamaño de pelota!";
+         infoBonus.text = "Pelota Grande!";
          StartCoroutine(cuboTurquesa());
          StopCoroutine(cuboTurquesa());
        }
@@ -271,5 +284,11 @@ public class Pelota : MonoBehaviour
    private IEnumerator returnPelota(){
      yield return new WaitForSeconds(3);
      transform.localScale = normalPelota;
+   }
+
+   private void perder(){
+     if (perdio){
+       SceneManager.LoadScene(1);
+     }
    }
 }

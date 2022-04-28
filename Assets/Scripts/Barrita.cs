@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 public class Barrita : MonoBehaviour
 {
-    public float velocidadX = 50;
+    public float velocidadX = 25;
     public float velocidadY = 5;
 
     void Start() {
@@ -25,5 +25,17 @@ public class Barrita : MonoBehaviour
       float horizontal = Input.GetAxis("Horizontal");
       float vertical = Input.GetAxis("Vertical");
       transform.Translate((vertical * Time.deltaTime)*velocidadY,(horizontal * Time.deltaTime)*velocidadX,0);
+      if (transform.position.x > 20f){
+        transform.position = new Vector3(20f, transform.position.y, transform.position.z);
+      }
+      else if (transform.position.x < -19.9f){
+        transform.position = new Vector3(-19.9f, transform.position.y, transform.position.z);
+      }
+      if (transform.position.y > 8.16f){
+        transform.position = new Vector3(transform.position.x, 8.16f, transform.position.z);
+      }
+      else if (transform.position.y < -16.4f){
+        transform.position = new Vector3(transform.position.x, -16.4f, transform.position.z);
+      }
     }
 }
