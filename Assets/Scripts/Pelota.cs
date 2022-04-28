@@ -1,9 +1,9 @@
 /*
-Actividad 2 - segundo prototipo de juego
+Actividad 3 - último prototipo de juego
 Héctor Robles Villarreal A01634105
 Diego Su Gómez  A01620476
 Equipo 8
-Miércoles 6 de abril de 2022
+Viernes 29 de abril de 2022
 */
 
 using System.Collections;
@@ -44,10 +44,7 @@ public class Pelota : MonoBehaviour
     private Text infoT;
     [SerializeField]
     private Text infoBonus;
-    public Vector3 vector = new Vector3(0,600,0);
-    public float velocidadX = 500;
-    public float velocidadY = 500;
-    public static int puntuacion;
+    private Vector3 vector = new Vector3(0,600,0);
     private Vector3 posVerdeArriba;
     private Vector3 posVerdeAbajo;
     private Vector3 pos;
@@ -57,16 +54,14 @@ public class Pelota : MonoBehaviour
     private Vector3 doblePelota;
     private Vector3 normalPelota;
     private bool flagSize;
-    public static int contPelotas = 1;
-    public int bonusSegs = 0;
-    public bool cubosAzules = false;
-    public bool cubosMorados = false;
-    public bool perdio = false;
-    public GameObject cubito;
-    public Color color1 = Color.red;
-    public Color color2 = Color.blue;
+    private int bonusSegs = 0;
+    private bool cubosAzules = false;
+    private bool cubosMorados = false;
+    private bool perdio = false;
+    private GameObject cubito;
     public static int maxPunt;
-
+    public static int puntuacion;
+    public static int contPelotas = 1;
 
     void Start(){
         rb = GetComponent<Rigidbody>();

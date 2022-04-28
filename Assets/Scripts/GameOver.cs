@@ -1,3 +1,11 @@
+/*
+Actividad 3 - último prototipo de juego
+Héctor Robles Villarreal A01634105
+Diego Su Gómez  A01620476
+Equipo 8
+Viernes 29 de abril de 2022
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
