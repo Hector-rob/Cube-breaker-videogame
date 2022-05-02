@@ -62,6 +62,8 @@ public class Pelota : MonoBehaviour
     public static int maxPunt;
     public static int puntuacion;
     public static int contPelotas = 1;
+    public static bool pantallaGame = false;
+    public static bool barraGrande = false;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -73,6 +75,7 @@ public class Pelota : MonoBehaviour
         doblePelota= new Vector3(3,3,3);
         normalPelota= new Vector3(1.5f,1.5f,1.5f);
         normalBarritas = new Vector3(1,3.5f,1);
+        pantallaGame = true;
         StartCoroutine(cuboAzul());
         StopCoroutine(cuboAzul());
         StartCoroutine(cuboMorado());
@@ -83,8 +86,6 @@ public class Pelota : MonoBehaviour
     }
 
     void Update(){
-
-
     }
 
     void OnCollisionEnter(Collision c){
@@ -164,6 +165,7 @@ public class Pelota : MonoBehaviour
           StopCoroutine(cuboAzul());
           barritaAbajo.transform.localScale = dobleXbarritas;
           barritaArriba.transform.localScale = dobleXbarritas;
+          barraGrande = true;
           flagSize = false;
           if(!flagSize){
            StartCoroutine(ReturnToNormal());
@@ -195,14 +197,14 @@ public class Pelota : MonoBehaviour
    void AddOne(){
      puntuacion+=1;
      puntos.text = "Puntuación: " + puntuacion.ToString();
-     info.text = "Destruiste un cubo rojo: + 1 punto!";
+     info.text = "Cubo rojo: + 1 punto!";
      Invoke("delText",2);
    }
 
    void AddThree(){
      puntuacion+=3;
      puntos.text = "Puntuación: " + puntuacion.ToString();
-     info.text = "Destruiste un cubo verde: + 3 puntos!";
+     info.text = "Cubo verde: + 3 puntos!";
      Invoke("delText",2);
    }
 
@@ -216,6 +218,7 @@ public class Pelota : MonoBehaviour
        bonusSegs = bonusSegs - 1;
        yield return new WaitForSeconds(1);
      }
+     barraGrande = false;
      infoT.text = " ";
      barritaAbajo.transform.localScale = normalBarritas;
      barritaArriba.transform.localScale = normalBarritas;

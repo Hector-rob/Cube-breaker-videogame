@@ -37,6 +37,12 @@ public class Barrita2 : MonoBehaviour
     else if (transform.position.y < -16.4f){
       transform.position = new Vector3(transform.position.x, -16.4f, transform.position.z);
     }
+    if (Pelota.barraGrande && transform.position.x > 18.1f){
+      transform.position = new Vector3(18.1f, transform.position.y, transform.position.z);
+    }
+    else if(Pelota.barraGrande && transform.position.x < -18.3f){
+      transform.position = new Vector3(-18.3f, transform.position.y, transform.position.z);
+    }
 
     }
 }

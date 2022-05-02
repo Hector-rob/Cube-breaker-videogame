@@ -25,8 +25,7 @@ public class GameOver : MonoBehaviour
       maxPuntos.text = "Máxima puntuación: " + Pelota.maxPunt.ToString();
       Pelota.puntuacion = 0;
       Pelota.contPelotas = 1;
-
-
+      Pelota.pantallaGame = false;
     }
 
     // Update is called once per frame

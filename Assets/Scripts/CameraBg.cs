@@ -22,7 +22,7 @@ public class CameraBg : MonoBehaviour
     void Start()
     {
       cam = GetComponent<Camera>();
-       cam.clearFlags = CameraClearFlags.SolidColor;
+      cam.clearFlags = CameraClearFlags.SolidColor;
 
     }
 
@@ -30,7 +30,7 @@ public class CameraBg : MonoBehaviour
     void Update()
     {
       float t = Mathf.PingPong(Time.time, duration) / duration;
-        cam.backgroundColor = Color.Lerp(color1, color2, t);
+      cam.backgroundColor = Color.Lerp(color1, color2, t);
 
     }
 }
